@@ -8,6 +8,24 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+func ExampleReduce_withInitialValue() {
+	ints := []int{1, 2, 3, 4, 5}
+	sum := E.Reduce(ints, 10, func(memo, i int) int {
+		return memo + i
+	}).(int)
+	fmt.Println(sum)
+	// Output: 25
+}
+
+func ExampleReduce_implicitInitialValue() {
+	ints := []int{1, 2, 3, 4, 5}
+	sum := E.Reduce(ints, nil, func(memo, i int) int {
+		return memo + i
+	}).(int)
+	fmt.Println(sum)
+	// Output: 15
+}
+
 var (
 	reduceInts    = []int{1, 2, 3, 4, 5}
 	reduceStrings = []string{"wat", "batman", "superman"}

@@ -1,12 +1,22 @@
 package enumerable_test
 
 import (
+	"fmt"
 	"strings"
 	"testing"
 
 	E "github.com/darkhelmet/enumerable"
 	"github.com/stretchr/testify/assert"
 )
+
+func ExampleMap() {
+	words := strings.Fields("To be or not to be, that is the question!")
+	lengths := E.Map(words, func(s string) int {
+		return len(s)
+	}).([]int)
+	fmt.Println(lengths)
+	// Output: [2 2 2 3 2 3 4 2 3 9]
+}
 
 func TestMapWorks(t *testing.T) {
 	squares := E.Map([]int{1, 2, 3}, func(i int) int {
