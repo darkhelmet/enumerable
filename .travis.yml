@@ -9,5 +9,4 @@ before_install:
 script:
   - go vet
   - go test -cover
-  - go test -race
   - go test -bench Bench -benchmem
