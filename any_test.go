@@ -33,44 +33,44 @@ func TestAnyWorks(t *testing.T) {
 
 func TestAnyRequiresSlice(t *testing.T) {
 	assert.Panics(t, func() {
-		E.All(1, "doesn't matter")
+		E.Any(1, "doesn't matter")
 	}, "requires a slice as the first arg")
 }
 
 func TestAnyRequiresAFunc(t *testing.T) {
 	assert.Panics(t, func() {
-		E.All([]int{1}, "not a func")
+		E.Any([]int{1}, "not a func")
 	}, "requires a func as the second arg")
 }
 
 func TestAnyRequiresASingleArgFunc(t *testing.T) {
 	assert.Panics(t, func() {
-		E.All([]int{1}, func() {})
+		E.Any([]int{1}, func() {})
 	}, "requires a single arg function")
 
 	assert.Panics(t, func() {
-		E.All([]int{1}, func(i, j int) {})
+		E.Any([]int{1}, func(i, j int) {})
 	}, "requires a single arg function")
 }
 
 func TestAnyRequiresASingleReturnFunc(t *testing.T) {
 	assert.Panics(t, func() {
-		E.All([]int{1}, func(i int) {})
+		E.Any([]int{1}, func(i int) {})
 	}, "requires a single arg function")
 
 	assert.Panics(t, func() {
-		E.All([]int{1}, func(i int) (int, int) { return 1, 0 })
+		E.Any([]int{1}, func(i int) (int, int) { return 1, 0 })
 	}, "requires a single arg function")
 }
 
 func TestAnyRequiresFuncToTakeSliceArg(t *testing.T) {
 	assert.Panics(t, func() {
-		E.All([]int{1}, func(s string) int { return 0 })
+		E.Any([]int{1}, func(s string) int { return 0 })
 	}, "requires the func to take the same type as the slice")
 }
 
 func TestAnyRequiresFuncToReturnABool(t *testing.T) {
 	assert.Panics(t, func() {
-		E.All([]int{1}, func(i int) int { return i })
+		E.Any([]int{1}, func(i int) int { return i })
 	}, "requires the func to take the same type as the slice")
 }

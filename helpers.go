@@ -70,7 +70,7 @@ func ensureFuncReturns(i interface{}, in, out int, ret reflect.Kind) reflect.Val
 	v := ensureFunc(i, in, out)
 	rk := v.Type().Out(0).Kind()
 	if rk != ret {
-		panicf("expected func to return a bool, returns %T", rk)
+		panicf("expected func to return a bool, returns %s", rk)
 	}
 	return v
 }
